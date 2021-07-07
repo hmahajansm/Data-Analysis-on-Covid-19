@@ -49,6 +49,7 @@ countries = list(pos.keys()) #create list of countries to offset label position
 
 for k in countries:
     label_pos[k] = pos[k]*1.08 #node label offset8
+
 nx.draw_networkx_labels(G,label_pos,font_size=25)
 imports = nx.get_edge_attributes(G,'Friendliness').values()
 cval = np.array(list(imports))
@@ -56,8 +57,7 @@ vmin = min(cval)
 vmax = max(cval)
 cmap = plt.cm.plasma
 nx.draw_networkx_nodes(G,pos,node_size = 1000)
-edges = nx.draw_networkx_edges(G,pos,width = 5,arrowsize = 15, connectionstyle =/
-        'arc3, rad=0.1',alpha = 1,edge_color = cval,edge_cmap = cmap,vmin=vmin,vmax=vmax)
+edges = nx.draw_networkx_edges(G,pos,width = 5,arrowsize = 15, connectionstyle ='arc3, rad=0.1',alpha = 1,edge_color = cval,edge_cmap = cmap,vmin=vmin,vmax=vmax)
 plt.axis('off')
 sm = plt.cm.ScalarMappable(cmap = cmap,norm = plt.Normalize(vmin = vmin,vmax = vmax)) #take exponential to map colorbar/
     # to real values
@@ -85,7 +85,10 @@ plt.scatter(x2,y2)
 plt.ylabel('Friendliness')
 plt.xlabel('Growth Rate Correlation')
 
+
+
 #Code for calculating the moving average of Growth Rate:-
+
 def growt_rate() :
         global y
         y_df=df.drop(['new_deaths','total_cases','total_deaths','weekly_cases','weekly_deaths'/
@@ -120,7 +123,11 @@ def growt_rate() :
             print('\n')
             print(len(growth))
             print('\n')
+
+
+
 #Code for calculating Error for each m value:-
+
 new_case=df['new_cases_x'].tolist()
 def calculate_m(m,n):
     sum=0
