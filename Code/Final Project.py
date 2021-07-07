@@ -97,32 +97,32 @@ def growt_rate() :
         for j in range(0,len(country_array)) :
             y=y_df.loc[df['date'].isin(date_array) & (df['location']==country_array[j]) ]
             new_cases= y['new_cases']
-            new_case=new_cases.tolist()9
-            a= len(new_case)
-            print(type(new_case))
-            growth=[]
-            moving_average=[]
-            for x in range(0,a) :
-                if (new_case[x]!=0) and (new_case[x-1]!=0) :
-                    gnumbers=round(new_case[x]/new_case[x-1],2)
-                    growth.append(gnumbers)
-                else:
-                    gnumbers=0
-                    growth.append(gnumbers)
+        new_case=new_cases.tolist()9
+        a= len(new_case)
+        print(type(new_case))
+        growth=[]
+        moving_average=[]
+        for x in range(0,a) :
+            if (new_case[x]!=0) and (new_case[x-1]!=0) :
+                gnumbers=round(new_case[x]/new_case[x-1],2)
+                growth.append(gnumbers)
+            else:
+                gnumbers=0
+                growth.append(gnumbers)
                 #for i in range(0,len(growth)):
-            y['Growth']=growth
-            sum=0
-            for i in range(0,a):
-                sum=sum+growth[i]
-                moving_average.append(sum/(i+1))
-            y['Moving_Average']=moving_average
+        y['Growth']=growth
+        sum=0
+        for i in range(0,a):
+            sum=sum+growth[i]
+            moving_average.append(sum/(i+1))
+        y['Moving_Average']=moving_average
 
-            print(y)
-            print(f'Growth List For Country {country_array[j]} ..')
-            print(list(growth))
-            print('\n')
-            print(len(growth))
-            print('\n')
+        print(y)
+        print(f'Growth List For Country {country_array[j]} ..')
+        print(list(growth))
+        print('\n')
+        print(len(growth))
+        print('\n')
 
 
 
