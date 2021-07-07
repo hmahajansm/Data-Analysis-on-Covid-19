@@ -3,6 +3,7 @@ import pandas as pd
 import networkx as nx
 import matplotlib.pyplot as plt
 import numpy as np
+
 data = pd.read_csv("WTOdata.csv",encoding="latin-1")
 top = ["United States of America","India","Brazil","Argentina","Colombia","Mexico"]
 #,"Peru","South Africa","Italy","Iran","Chile","Germany","Iraq","Bangladesh","Indonesia","Phillippines"]
@@ -25,12 +26,14 @@ if total == 0:
 else:
     out['Friendliness'].loc[out['Partner Economy']==i] = out['Friendliness']/
     .loc[out['PartnerEconomy']==i]/total
+
 out = out.loc[out['Import Value'] !=0]
 out.to_csv("Network_Data.csv")
 #out = pd.read_csv('Network_Data.csv')
 out['Correlation'] = np.nan
 growth = pd.read_csv('growth_rate_data.csv')
 index = list(growth.drop_duplicates('location')['location'])
+
 for i in index:
     for j in index:
         correlation = np.corrcoef(growth['Growth Rate']/
@@ -53,19 +56,19 @@ vmin = min(cval)
 vmax = max(cval)
 cmap = plt.cm.plasma
 nx.draw_networkx_nodes(G,pos,node_size = 1000)
-edges = nx.draw_networkx_edges(G,pos,width = 5,arrowsize = 15, connectionstyle = 'arc3, rad
-=0.1',alpha = 1,edge_color = cval,edge_cmap = cmap,vmin=vmin,vmax=vmax)
+edges = nx.draw_networkx_edges(G,pos,width = 5,arrowsize = 15, connectionstyle =/
+        'arc3, rad=0.1',alpha = 1,edge_color = cval,edge_cmap = cmap,vmin=vmin,vmax=vmax)
 plt.axis('off')
-sm = plt.cm.ScalarMappable(cmap = cmap,norm = plt.Normalize(vmin = vmin,vmax = vmax)) #take
-exponential to map colorbar to real values
+sm = plt.cm.ScalarMappable(cmap = cmap,norm = plt.Normalize(vmin = vmin,vmax = vmax)) #take exponential to map colorbar/
+    # to real values
 clb = plt.colorbar(sm)
 clb.ax.tick_params(labelsize = 28)
 clb.set_label('Friendliness Factor',size = 28)
 out = out[(out['Friendliness']!=0) & (out['Partner Economy']!='Italy')]
 out = out.sort_values('Friendliness',axis = 0,ascending = False,inplace = False)
 out = out.drop_duplicates('Correlation')
-out2 = out[(out['Reporting Economy']!='United States of America')& (out['Partner
-Economy']!='United States of America')]
+out2 = out[(out['Reporting Economy']!='United States of America')& /
+       (out['PartnerEconomy']!='United States of America')]
 plt.show()
 plt.figure()
 x = out['Correlation']
