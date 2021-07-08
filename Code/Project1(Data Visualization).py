@@ -1,4 +1,4 @@
-#Source Code:
+#Source Code to sort and clean the data
 import pandas as pd
 def sortcsv(file,column,top_num):
     data = pd.read_csv(file)
