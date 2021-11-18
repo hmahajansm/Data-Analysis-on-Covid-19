@@ -86,7 +86,7 @@ plt.ylabel('Friendliness')
 plt.xlabel('Growth Rate Correlation')
 
 
-
+print("To test git changes")
 #Code for calculating the moving average of Growth Rate:-
 
 def growt_rate() :
